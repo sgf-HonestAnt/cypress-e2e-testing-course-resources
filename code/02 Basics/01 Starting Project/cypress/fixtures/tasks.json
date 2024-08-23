@@ -1,0 +1,12 @@
+[
+  {
+    "input#title": "Task_1",
+    "textarea#summary": "This is an urgent test task",
+    "select#category": "urgent"
+  },
+  {
+    "input#title": "Task_2",
+    "textarea#summary": "This is a low priority test task",
+    "select#category": "low"
+  }
+]
