@@ -1,6 +1,6 @@
 import { defineConfig } from 'cypress';
 
-import { seed } from './prisma/seed-test';
+import { seed } from './prisma/seed-test'; // ! different fn to seed() in real DB
 
 export default defineConfig({
   e2e: {

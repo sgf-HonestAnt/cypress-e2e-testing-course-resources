@@ -36,16 +36,33 @@
 //   }
 // }
 
+Cypress.Commands.add(
+  "login",
+  (
+    credentials = {
+      email: "test@example.com",
+      password: "testpassword",
+      path: "/login",
+    }
+  ) => {
+    cy.visit(credentials.path);
+    // sometimes there is a bug where it does not type right away...
+    cy.get('[data-cy="auth-email"]').click();
+    cy.get('[data-cy="auth-email"]').type(credentials.email);
+    cy.get('[data-cy="auth-password"]').type(credentials.password);
+    cy.get('[data-cy="auth-submit"]').click();
+  }
+);
 
 // the below code snippet is required to handle a React hydration bug that would cause tests to fail
 // it's only a workaround until this React behavior / bug is fixed
-Cypress.on('uncaught:exception', (err) => {
+Cypress.on("uncaught:exception", (err) => {
   // we check if the error is
   if (
-    err.message.includes('Minified React error #418;') ||
-    err.message.includes('Minified React error #423;') ||
-    err.message.includes('hydrating') ||
-    err.message.includes('Hydration')
+    err.message.includes("Minified React error #418;") ||
+    err.message.includes("Minified React error #423;") ||
+    err.message.includes("hydrating") ||
+    err.message.includes("Hydration")
   ) {
     return false;
   }
